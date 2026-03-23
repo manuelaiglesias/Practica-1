@@ -20,6 +20,29 @@ def Agregar equipo (nombre):
         print (f" El equpo ya estaba registrado ")    
 
 def Actualizar resultados (equipo1, equipo2, gole1, gole2)
+    tabla[equipo1] [pj] += 1
+    tabla [equipo2] [pj]+=1
+    if gole1 > gole2:
+        tabla [equipo1][pg]+=1
+        tabla [equipo1][gf]+=gole1
+        tabla [equipo1][gc]+=gole2
+        tabla [equipo1][puntos]+=3
+        tabla [equipo2][pp]+=1
+        tabla [equipo2][gf]+=gole2
+        tabla [equipo2][gc]+=gole1
+    elif gole1 < gole2:
+        tabla [equipo2][pg]+=1
+        tabla [equipo2][gf]+=gole2
+        tabla [equipo2][gc]+=gole1
+        tabla [equipo2][puntos]+=3
+        tabla [equipo1][pp]+=1
+        tabla [equipo1][gf]+=gole1
+        tabla [equipo1][gc]+=gole2
+    else gole1 = gole2:
+        tabla [equipo2][gf]+=gole2
+        tabla [equipo2][gc]+=gole1
+        tabla [equipo1][gf]+=gole1
+        tabla [equipo1][gc]+=gole2
 
 def Eliminar equipo (nombre)
 
