@@ -1,48 +1,82 @@
-print (f"Tabla psiciones| Toeneo de futbol | ")
+print ("Tabla de posiciones - torneo de futbol")
+def Mostrar_menu(): 
+    print ("--- Menú del Torneo ---")
+    print ("1. Agregar equipo")
+    print ("2. Guardar resultado")
+    print ("3. Mostrar tabla de posiciones")
+    print ("4. Salir")
 
-def Mostrar menu ():
-    print (f"Menu del torneo ")
-    print (f" 1. Agregar equipo")
-    print (f " 2. Guardar resultados ")
-    print (f" 3. Mostrar tabla de posiciones ")
-    print (f" 4. Salir ")
 
-tabla ={}
 
-def Agregar equipo (nombre):
+def Agregar_equipo (nombre):
     if nombre not in tabla:
-        tabla[nombre]={
-            "pj":0, "pg":0, "pp":0
-            "gf":0, "gc":0, "puntos":0
+        tabla [nombre] = {
+            "PJ": 0, "PG": 0, "PP": 0,
+            "GF": 0 , "GC": 0, "Pts": 0
         }
-        print(f "Equipo {nombre} fue agregado a la tabla ")
+        print (f"Equipo '{nombre}' agregado a la tabla")
     else:
-        print (f" El equpo ya estaba registrado ")    
+        print ("Este equipo ya esta registrado")
 
-def Actualizar resultados (equipo1, equipo2, gole1, gole2)
-    tabla[equipo1] [pj] += 1
-    tabla [equipo2] [pj]+=1
-    if gole1 > gole2:
-        tabla [equipo1][pg]+=1
-        tabla [equipo1][gf]+=gole1
-        tabla [equipo1][gc]+=gole2
-        tabla [equipo1][puntos]+=3
-        tabla [equipo2][pp]+=1
-        tabla [equipo2][gf]+=gole2
-        tabla [equipo2][gc]+=gole1
-    elif gole1 < gole2:
-        tabla [equipo2][pg]+=1
-        tabla [equipo2][gf]+=gole2
-        tabla [equipo2][gc]+=gole1
-        tabla [equipo2][puntos]+=3
-        tabla [equipo1][pp]+=1
-        tabla [equipo1][gf]+=gole1
-        tabla [equipo1][gc]+=gole2
-    else gole1 = gole2:
-        tabla [equipo2][gf]+=gole2
-        tabla [equipo2][gc]+=gole1
-        tabla [equipo1][gf]+=gole1
-        tabla [equipo1][gc]+=gole2
+def Guardar_resultado (tabla):
+    local = input("Equipo local: ")
+    visitante = input("Equipo visitante: ")
+    glocal = input("Goles local: ")
+    gvisitante = input("Goles visitante: ")
 
-def Eliminar equipo (nombre)
+    #actualizo partidos 
+    tabla [local]["PJ"] +=1
+    tabla [visitante]["PJ"] +=1
 
+    #guardo goles
+    tabla [local]["GF"] +=glocal
+    tabla [local]["GC"] += gvisitante
+    tabla [visitante]["GC"] += glocal
+    tabla [visitante]["GF"] +=gvisitante
+
+    #actualizo resultados 
+    if glocal > gvisitante:
+        tabla[local]["PG"] +=1
+        tabla [local]["Pts"] += 3
+        tabla [visitante]["PP"]+=1
+    elif glocal < gvisitante:
+        tabla [visitante]["PG"]+=1
+        tabla [visitante]["Pts"]+= 3
+        tabla [local]["PP"] +=1
+    else:
+        tabla [local]["Pts"]+= 1
+        tabla [visitante]["Pts"]+= 1
+
+def Mostrar_tabla(tabla): 
+    print ("TABLA DE POSICIONES")
+    ordenado_por_valor = sorted(tabla.items(), key=lambda item: item[1], reverse =True)
+    for nombre, Pts in ordenado_por_valor:
+        print (f"{nombre}: {Pts}")
+
+def Eliminar_equipo (nombre):
+    if nombre in tabla:
+        del tabla[nombre]
+        print (f"equipo eliminado con exito")
+    else:
+        print(f"no existe el equipo")
+
+#Programa principal 
+
+tabla = {}
+while True:
+    Mostrar_menu()
+    opcion = input("Elige una opción: ")
+
+    if opcion == "1":
+        Agregar_equipo(input("Nombre del equipo"))
+    elif opcion == "2":
+        Guardar_resultado(tabla)
+    elif opcion == "3":
+        Mostrar_tabla(tabla)
+    elif opcion == "4":
+        Eliminar_equipo((input("Nombre del equipo a eliminar")))
+    elif opcion == "5":
+        print("Saliendo del programa...")
+        break
+    else:
+        print("Opción inválida")
