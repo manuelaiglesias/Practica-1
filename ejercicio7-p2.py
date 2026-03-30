@@ -14,7 +14,7 @@ if len(lista) >= 3:
     else:  
         # Mezclo 
         random.shuffle(lista)
-        # Creo la lista 2 mezclada
+        # Creo la lista 2 mezclada una posicion
         lista2 = lista[1:] + lista[:1]
         # Asigno de amigos, emparejo dos listas con el zip
         print(f"Sorteo:")
